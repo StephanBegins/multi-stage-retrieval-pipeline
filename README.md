@@ -33,10 +33,10 @@ cd multi-stage-retrieval-pipeline
 It's recommended to use a virtual environment to manage dependencies:
 
 python -m venv .venv
-# Activate the environment
-# On Windows:
+Activate the environment
+On Windows:
 .venv\Scripts\activate
-# On macOS/Linux:
+On macOS/Linux:
 source .venv/bin/activate
 
 3. Install Dependencies
@@ -92,21 +92,21 @@ from sentence_transformers import SentenceTransformer
 from transformers import AutoModelForSequenceClassification, AutoTokenizer
 from sklearn.metrics import ndcg_score
 
-# Step 1: Load the Dataset
+Step 1: Load the Dataset
 data_path = "path_to_datasets/NaturalQuestions"
 corpus, queries, qrels = GenericDataLoader(data_folder=data_path).load(split="test")
 
-# Step 2: Candidate Retrieval (Embedding Model)
+Step 2: Candidate Retrieval (Embedding Model)
 embedding_model = SentenceTransformer('nvidia/NV-Embed-v2')
-# Retrieve top-k documents and calculate cosine similarity...
+*Retrieve top-k documents and calculate cosine similarity...
 
-# Step 3: Reranking (Cross-Encoder)
+Step 3: Reranking (Cross-Encoder)
 rank_model = AutoModelForSequenceClassification.from_pretrained('cross-encoder/ms-marco-MiniLM-L-12-v2')
 tokenizer = AutoTokenizer.from_pretrained('cross-encoder/ms-marco-MiniLM-L-12-v2')
-# Rerank top-k documents...
+Rerank top-k documents...
 
-# Step 4: Evaluation (NDCG@10)
-# Calculate NDCG@10 for the retrieved and reranked results...
+Step 4: Evaluation (NDCG@10)
+Calculate NDCG@10 for the retrieved and reranked results...
 
 
 File Structure:
